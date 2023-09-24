@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
-const { config } = require('../config/secret');
+const {config}=require("../config/secret")
+main().catch(err => console.log(err));
 
 async function main() {
-  try {
-    mongoose.set('strictQuery', false);
+  mongoose.set('strictQuery', false);
+ 
+  await mongoose.connect('mongodb+srv://'+config. userDb+':'+config.passDb+'@cluster0.of9f1ec.mongodb.net/');
+  console.log("mongo connect monkeys2 local");
 
-    await mongoose.connect(`mongodb+srv://${config.userDb}:${config.passDb}@cluster0.of9f1ec.mongodb.net/dan`);
-    console.log('MongoDB connection established');
-  } catch (err) {
-    console.log(err);
-    process.exit(1);
-  }
+
+  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
-
-main();
